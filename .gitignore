@@ -34,3 +34,4 @@ yarn-error.log*
 .vercel
 
 pages/validation-test.js
+config/dev.js
