@@ -1,4 +1,4 @@
 module.exports = {
-	appID: process.env.APP_ID,
-	appKey: process.env.APP_KEY
+	appID: process.env.NEXT_PUBLIC_APP_ID,
+	appKey: process.env.NEXT_PUBLIC_APP_KEY
 };
