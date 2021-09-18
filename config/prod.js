@@ -1,4 +1,4 @@
 module.exports = {
-	appID: process.env.REACT_APP_APP_ID,
-	appKey: process.env.REACT_APP_APP_KEY
+	appID: process.env.APP_ID,
+	appKey: process.env.APP_KEY
 };
