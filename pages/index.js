@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Card from "../components/Card";
-const keys = require("../config/keys");
+import config from "../config/config";
 
 export default function Home() {
 	const limit = 9;
@@ -21,10 +21,10 @@ export default function Home() {
 	// }, [query]);
 
 	const getRecipes = async (from, to) => {
-		let URI = `https://api.edamam.com/search?q=${input}&app_id=${keys.appID}&app_key=${keys.appKey}&from=${from}&to=${to}`;
+		let URI = `https://api.edamam.com/search?q=${input}&app_id=${config.appID}&app_key=${config.appKey}&from=${from}&to=${to}`;
 		const response = await fetch(URI);
 		const data = await response.json();
-		console.log({ data });
+		// console.log({ data });
 		setItems(data.hits);
 		if (data) {
 			setLoaded(true);
@@ -74,24 +74,27 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className="flex flex-col justify-center items-center bg-green-800">
-				<div className="pl-40 mt-4 w-full">
+				<div className="lg:pl-40 pl-6 mt-4 w-full">
 					<h1 className="font-semibold text-3xl text-white">
 						Search for recipes
 					</h1>
 				</div>
 
-				<form className="flex mx-5 w-2/3" onSubmit={getSearch}>
+				<form
+					className="flex flex-wrap lg:flex-nowrap lg:mx-5 mx-2 lg:w-2/3 w-full"
+					onSubmit={getSearch}
+				>
 					<label htmlFor="searchString"></label>
 					<input
 						id="searchString"
 						type="search"
-						className="m-5 px-6 py-2 rounded-md border-none focus:outline-none w-full"
+						className="m-5 lg:px-6 px-2 py-2 rounded-md border-none focus:outline-none w-full"
 						value={input}
 						placeholder="Search recipes..."
 						onChange={handleChange}
 					/>
 					<button
-						className="m-5 text-white bg-black px-6 py-2 rounded-md shadow-sm border-none w-32"
+						className="m-5 border-2 border-black text-white bg-black px-6 py-2 rounded-md shadow-sm w-32 hover:border-white"
 						type="submit"
 					>
 						Search
@@ -99,7 +102,7 @@ export default function Home() {
 				</form>
 
 				{/* <Popup items={loaded ? items : "nothing"} /> */}
-				<div className="flex flex-wrap w-full p-14 sm:p-1 justify-center">
+				<div className="flex flex-wrap w-full lg:p-14 p-1 justify-center">
 					{items.map((item) => (
 						<Card
 							key={uuidv4()}
@@ -118,7 +121,7 @@ export default function Home() {
 					<div className="">
 						{pg.from > 0 && (
 							<button
-								className="m-5 text-white bg-black px-6 py-2 rounded-md shadow-sm border-none w-32"
+								className="m-5 border-2 border-black text-white bg-black px-6 py-2 rounded-md shadow-sm border-none w-32 hover:border-white"
 								type="button"
 								onClick={handlePrevious}
 							>
@@ -127,7 +130,7 @@ export default function Home() {
 						)}
 
 						<button
-							className="m-5 text-white bg-black px-6 py-2 rounded-md shadow-sm border-none w-32"
+							className="m-5 border-2 border-black text-white bg-black px-6 py-2 rounded-md shadow-sm w-32 hover:border-white"
 							type="button"
 							onClick={handleNext}
 						>

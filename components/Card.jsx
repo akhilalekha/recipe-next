@@ -14,7 +14,7 @@ export default function Card({
 	return (
 		<div className="border-2 border-white flex flex-col w-80 h-96 p-4 bg-white m-2 rounded-md shadow-md overflow-y-auto hover:border-blue-600">
 			<Link href={url}>
-				<a>
+				<a target="_blank">
 					<img
 						className="w-full h-60 rounded-md object-cover"
 						src={image}
